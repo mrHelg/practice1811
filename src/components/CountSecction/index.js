@@ -1,61 +1,25 @@
 import { Component } from 'react';
-import styles from './CountSection.module.css';
+import InputSection from './InputSection';
+import MainSection from './MainSection';
 
 class CounterSection extends Component {
   constructor(props) {
     super(props);
-    const { initValue, initStep } = this.props;
     this.state = {
-      value: initValue,
-      step: initStep,
-      isAddMode: true,
+      step: 1,
     };
   }
 
-  handleOperation = () => {
-    let { value, step, isAddMode } = this.state;
-    if (isAddMode) {
-      value += +step;
-    } else {
-      value -= +step;
-    }
-    this.setState({ value: value, step: step });
-  };
-
-  handleStepChange = ({ target: { value } }) => {
-    if (value <= 0) {
-      value = this.props.initStep;
-    }
-    this.setState({ step: value });
-  };
-
-  handleChangeMode = () => {
-    const { isAddMode } = this.state;
-    this.setState({ isAddMode: !isAddMode });
+  updateStep = (currentStep) => {
+    this.setState({step: currentStep});
   };
 
   render() {
-    const { value, step, isAddMode } = this.state;
-
+    const { step } = this.state;
     return (
       <>
-        <h2>{value}</h2>
-        <>
-          <button className={styles.btn} onClick={this.handleOperation}>
-            {isAddMode ? 'Add' : 'Reduce'}
-          </button>
-          <button className={styles.btn} onClick={this.handleChangeMode}>
-            Change
-          </button>
-        </>
-        <p>Step: {step}</p>
-        <input
-          type="number"
-          name="step"
-          value={step}
-          onChange={this.handleStepChange}
-          // pattern="^[1-9][0-9]*$"
-        />
+        <MainSection step={Number(step)} />
+        <InputSection updateStep={this.updateStep} />
       </>
     );
   }
