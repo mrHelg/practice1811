@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import InputSection from './InputSection';
 import MainSection from './MainSection';
+import styles from './CounterSection.module.css'
 
 class CounterSection extends Component {
   constructor(props) {
@@ -17,10 +18,10 @@ class CounterSection extends Component {
   render() {
     const { step } = this.state;
     return (
-      <>
+      <div className={styles.counterSection}>
         <MainSection step={Number(step)} />
         <InputSection updateStep={this.updateStep} />
-      </>
+      </div>
     );
   }
 }

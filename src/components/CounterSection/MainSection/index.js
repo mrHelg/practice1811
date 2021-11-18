@@ -13,16 +13,10 @@ class MainSection extends Component {
   handleOperation = () => {
     this.setState((state, props) => {
       let { value, isAddMode } = state;
-      if (isAddMode) {
-        return { value: value + props.step };
-      } else {
-        return { value: value - props.step };
-      }
+      return isAddMode
+        ? { value: value + props.step }
+        : { value: value - props.step };
     });
-  };
-
-  handleStepChange = ({ target: { value } }) => {
-    this.setState({ step: value });
   };
 
   handleChangeMode = () => {
@@ -36,14 +30,14 @@ class MainSection extends Component {
     return (
       <>
         <h2>{value}</h2>
-        <>
+        <div className={styles.btnSection}>
           <button className={styles.btn} onClick={this.handleOperation}>
             {isAddMode ? 'Add' : 'Reduce'}
           </button>
           <button className={styles.btn} onClick={this.handleChangeMode}>
             Change
           </button>
-        </>
+        </div>
         <p>Step: {step}</p>
       </>
     );
