@@ -24,6 +24,12 @@ class MainSection extends Component {
     this.setState({ isAddMode: !isAddMode });
   };
 
+  handleReset = () => {
+    this.setState((state, props) => {
+      return { value: 0 }
+    });
+  };
+
   render() {
     const { value, isAddMode } = this.state;
     const { step } = this.props;
@@ -36,6 +42,9 @@ class MainSection extends Component {
           </button>
           <button className={styles.btn} onClick={this.handleChangeMode}>
             Change
+          </button>
+          <button className={styles.btn} onClick={this.handleReset}>
+            Reset
           </button>
         </div>
         <p>Step: {step}</p>
