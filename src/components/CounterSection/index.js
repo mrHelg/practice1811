@@ -15,6 +15,10 @@ class CounterSection extends Component {
     this.setState({step: currentStep});
   };
 
+  shouldComponentUpdate(nextProps, nextState) {
+    return nextState.step !== this.state.step ;
+  }
+
   render() {
     const { step } = this.state;
     return (

@@ -13,6 +13,9 @@ class InputSection extends Component {
     this.props.updateStep(currentStep);
   };
  
+  shouldComponentUpdate(nextProps, nextState) {
+    return nextState.step !== this.state.step ;
+  }
 
   render() {
     const { step } = this.state;

@@ -26,9 +26,17 @@ class MainSection extends Component {
 
   handleReset = () => {
     this.setState((state, props) => {
-      return { value: 0 }
+      return { value: 0 };
     });
   };
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return (
+      nextState.value !== this.state.value ||
+      nextState.isAddMode !== this.state.isAddMode ||
+      nextProps.step !== this.props.step
+    );
+  }
 
   render() {
     const { value, isAddMode } = this.state;
